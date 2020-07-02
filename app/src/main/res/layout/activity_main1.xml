@@ -1,0 +1,79 @@
+<!--
+  ~ This file is part of the PhotoEditor Software Development Kit.
+  ~
+  ~ Copyright (C) 2016 9elements GmbH <contact@9elements.com>
+  ~ All rights reserved.
+  ~
+  ~ Redistribution and use in sourceType and binary forms, without
+  ~ modification, are permitted provided that the following license agreement
+  ~ is approved and a legal/financial contract was signed by the user.
+  ~
+  ~ The license agreement can be found under the following link:
+  ~
+  ~ https://www.photoeditorsdk.com/LICENSE.txt
+  -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".edit"
+    android:background="#FFFFFF"
+    android:layout_alignParentTop="true">
+
+
+  <!-- <Button
+        android:id="@+id/openGallery"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="8dp"
+        android:textSize="12sp"
+        android:text="TAKE FROM GALLERY"
+        android:textColor="#4C4C4C"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+      />-->
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+       >
+        <!-- Video player -->
+        <VideoView
+            android:id="@+id/video"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"/>
+
+     <RelativeLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         >
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/red_border_but"
+            android:text="Share"
+            android:layout_marginLeft="20dp"
+            android:textColor="#DC143C"
+            android:id="@+id/share"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/red_but"
+            android:layout_marginLeft="200dp"
+            android:text="Record Again"
+            android:textColor="@color/white"
+            android:id="@+id/again"/>
+     </RelativeLayout>
+    </FrameLayout>
+
+</LinearLayout>

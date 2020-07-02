@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Merge To make movie"
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textColor="#DC143C"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:id="@+id/merge1"
+                    android:background="@drawable/button_upper"
+                    android:layout_height="match_parent"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:text="Try \n Magic Merger 1" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:id="@+id/merge2"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/button_lower"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:text="Try \n Magic Merger 2"></Button>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
