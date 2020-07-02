@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "22878950674",
+    "firebase_url": "https://yoshow-695f4.firebaseio.com",
+    "project_id": "yoshow-695f4",
+    "storage_bucket": "yoshow-695f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22878950674:android:995a5206db5888fe074fcb",
+        "android_client_info": {
+          "package_name": "udirect.com.yoshow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22878950674-aunj5cj6t8scpjsi601mcsc29dbukv8g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApa2Hpwbg8BXeoK7cn81GeppOwFJJyITs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22878950674-aunj5cj6t8scpjsi601mcsc29dbukv8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
