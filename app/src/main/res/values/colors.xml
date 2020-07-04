@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#DC143C</color>
+    <color name="colorPrimaryDark">#F05136</color>
     <color name="colorAccent">#FFFFFF</color>
 
     <color name="grey">#bfbfbf</color>
@@ -10,8 +10,19 @@
     <color name="link_blue">#4d94ff</color>
     <color name="darkRed">#cc0000</color>
     <color name="colordarkRed">#cc0000</color>
-
+    <color name="primarysecond">#76b9af</color>
     <color name="mcam_color_light">#FAFAFA</color>
-    <color name="mcam_color_dark">#DC143C</color>
+    <color name="mcam_color_dark">#F05136</color>
+    <array name="dot_on_page_active">
+        <item>#F05136</item>
+        <item>#F05136</item>
+        <item>#F05136</item>
 
+    </array>
+
+    <array name="dot_on_page_not_active">
+        <item>#FFFFFF</item>
+        <item>#FFFFFF</item>
+        <item>#FFFFFF</item>
+    </array>
 </resources>

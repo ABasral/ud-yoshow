@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/bottomNavViewBar"
-           android:background="#DC143C"
+           android:background="#F05136"
             app:menu="@menu/bottom_navigation_menu">
 
 

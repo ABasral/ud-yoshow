@@ -7,11 +7,11 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
@@ -23,68 +23,71 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="udirect.com.yoshow.opengl.mergeractivity"></activity>
-        <activity android:name="udirect.com.yoshow.opengl.NewStoryActivity3next" />
-        <activity android:name="udirect.com.yoshow.edit" />
-        <activity android:name="udirect.com.yoshow.opengl.NewStoryActivity4" />
-        <activity android:name="udirect.com.yoshow.opengl.NewStoryActivity3" />
-        <activity android:name="udirect.com.yoshow.opengl.NewStoryActivity2" />
+        <activity android:name=".introactivity"></activity>
+        <activity android:name=".opengl.mergeractivity" />
+        <activity android:name=".opengl.NewStoryActivity3next" />
+        <activity android:name=".edit" />
+        <activity android:name=".opengl.NewStoryActivity4" />
+        <activity android:name=".opengl.NewStoryActivity3" />
+        <activity android:name=".opengl.NewStoryActivity2" />
         <activity
-            android:name="udirect.com.yoshow.Home.HomeActivity"
+            android:name=".Home.HomeActivity"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
-            android:name="udirect.com.yoshow.Likes.LikesActivity"
+            android:name=".Likes.LikesActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name="udirect.com.yoshow.Profile.ProfileActivity"
+            android:name=".Profile.ProfileActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name="udirect.com.yoshow.Share.ShareActivity"
+            android:name=".Share.ShareActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name="udirect.com.yoshow.Share.NextActivity"
+            android:name=".Share.NextActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name="udirect.com.yoshow.Login.LoginActivity"
+            android:name=".Login.LoginActivity"
             android:launchMode="singleInstance">
-        <!--    <intent-filter>
+
+            <!--
+                <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
-            android:name="udirect.com.yoshow.Profile.AccountSettingsActivity"
+            android:name=".Profile.AccountSettingsActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name="udirect.com.yoshow.Login.RegisterActivity"
+            android:name=".Login.RegisterActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name="udirect.com.yoshow.opengl.OpenGLES10Activity"
+            android:name=".opengl.OpenGLES10Activity"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
-            android:name="udirect.com.yoshow.opengl.NewStoryActivity"
+            android:name=".opengl.NewStoryActivity"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
-            android:name="udirect.com.yoshow.Search.SearchActivity"
+            android:name=".Search.SearchActivity"
             android:launchMode="singleInstance"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name="udirect.com.yoshow.materialcamera.CaptureActivity"
+            android:name=".materialcamera.CaptureActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="udirect.com.yoshow.materialcamera.CaptureActivity2"
+            android:name=".materialcamera.CaptureActivity2"
             android:screenOrientation="portrait" />
-        <activity android:name="udirect.com.yoshow.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

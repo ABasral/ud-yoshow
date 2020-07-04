@@ -1,11 +1,17 @@
 package udirect.com.yoshow;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 private TextView nextbut;
@@ -27,15 +33,20 @@ private TextView nextbut;
     @Override
     public void run(){
 
-        Intent intent = new Intent(MainActivity.this, udirect.com.yoshow.Login.LoginActivity.class);
+        Intent intent = new Intent(MainActivity.this, introactivity.class);
         startActivity(intent);
              }
         },4000);
 
+
     }
+
 
     @Override
     public void onBackPressed(){
 
     }
+
+
+
 }

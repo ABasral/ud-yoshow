@@ -7,10 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
-
-
     >
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -22,17 +20,22 @@
         android:textSize="20sp"
         android:layout_marginTop="30dp"
 
-        android:textColor="@color/white"
+        android:textColor="#F05136"
         android:gravity="center_horizontal"
         android:layout_marginBottom="40dp"/>
 
 </LinearLayout>
-
+    <ImageView
+        android:layout_height="200dp"
+        android:layout_width="200dp"
+        android:src="@drawable/logoc"
+        android:layout_gravity="center_horizontal"
+        />
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="100dp">
+  >
 
    <!-- <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -44,8 +47,8 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:hint="Email"
-            android:textColor="#DC143C"
-            android:textColorHint="#DC143C"
+            android:textColor="#F05136"
+            android:textColorHint="#F05136"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:id="@+id/input_email"/>
@@ -63,8 +66,8 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:hint="Full Name"
-            android:textColor="#DC143C"
-            android:textColorHint="#DC143C"
+            android:textColor="#F05136"
+            android:textColorHint="#F05136"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:id="@+id/input_username"/>
@@ -83,8 +86,8 @@
             android:inputType="textPassword"
             android:hint="Password"
             android:layout_marginLeft="25dp"
-            android:textColor="#DC143C"
-            android:textColorHint="#DC143C"
+            android:textColor="#F05136"
+            android:textColorHint="#F05136"
             android:layout_marginRight="25dp"
             android:id="@+id/input_password"/>
 
@@ -97,12 +100,12 @@
         android:layout_marginBottom="25dp"
         android:layout_marginTop="25dp"
         android:text="Register"
-        android:textColor="#FFFFFF"
+        android:textColor="#F05136"
         android:id="@+id/btn_register"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:padding="12dp"
-        android:background="@drawable/red_but"/>
+        android:background="@drawable/white_rounded_button"/>
 </LinearLayout>
 
 </LinearLayout>

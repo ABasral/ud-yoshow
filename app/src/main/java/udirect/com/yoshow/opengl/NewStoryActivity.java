@@ -95,7 +95,7 @@ public class NewStoryActivity extends Activity {
                     .allowRetry(true)                                  // Whether or not 'Retry' is visible during playback
                     .autoSubmit(false)                                 // Whether or not user is allowed to playback videos after recording. This can affect other things, discussed in the next section.
                     .saveDir(saveFolder)                               // The folder recorded videos are saved to
-//                .primaryColorAttr(R.attr.colorPrimary)             // The theme color used for the camera, defaults to colorPrimary of Activity in the constructor
+                    .primaryColorAttr(R.attr.colorPrimaryDark)             // The theme color used for the camera, defaults to colorPrimary of Activity in the constructor
                     .showPortraitWarning(false)                         // Whether or not a warning is displayed if the user presses record in portrait orientation
                     .defaultToFrontFacing(false)                       // Whether or not the camera will initially show the front facing camera
 //                .allowChangeCamera(true)                           // Allows the user to change cameras.
@@ -131,7 +131,7 @@ public class NewStoryActivity extends Activity {
                     .allowRetry(true)                                  // Whether or not 'Retry' is visible during playback
                     .autoSubmit(false)                                 // Whether or not user is allowed to playback videos after recording. This can affect other things, discussed in the next section.
                     .saveDir(saveFolder)                               // The folder recorded videos are saved to
-//                .primaryColorAttr(R.attr.colorPrimary)             // The theme color used for the camera, defaults to colorPrimary of Activity in the constructor
+                    .primaryColorAttr(R.attr.colorPrimaryDark)             // The theme color used for the camera, defaults to colorPrimary of Activity in the constructor
                     .showPortraitWarning(false)                         // Whether or not a warning is displayed if the user presses record in portrait orientation
                     .defaultToFrontFacing(false)                       // Whether or not the camera will initially show the front facing camera
 //                .allowChangeCamera(true)                           // Allows the user to change cameras.

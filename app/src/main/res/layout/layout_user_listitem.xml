@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#DC143C">
+        >
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="75dp"
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:textSize="22sp"
-                android:textColor="@color/white"
+                android:textColor="@color/colorPrimaryDark"
                 android:id="@+id/username"
                 />
 
@@ -41,7 +41,7 @@
                 android:layout_marginLeft="10dp"
                 android:textSize="15sp"
                 android:layout_centerVertical="true"
-                android:textColor="@color/white"
+                android:textColor="@color/colorPrimaryDark"
                 android:id="@+id/email"
                />
 
