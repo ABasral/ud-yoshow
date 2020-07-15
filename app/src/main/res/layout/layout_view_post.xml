@@ -70,13 +70,17 @@
             <VideoView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-
                 android:layout_gravity="center"
                 android:id="@+id/post_image"
                 android:layout_centerInParent="true"
-
                 android:scaleType="center"
                 />
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="350dp"
+                    android:src="@drawable/logoc"/>
             </FrameLayout>
 
             <RelativeLayout

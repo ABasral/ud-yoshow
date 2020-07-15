@@ -115,7 +115,9 @@ class edit : Activity(), PermissionRequest.Response {
         videoView.setMediaController(mediaController)
         videoView.setVideoURI(uri)
         videoView.requestFocus()
+        videoView.seekTo(1)
         videoView.start()
+
         openEditor(Uri.fromFile( File(
                 Environment.getExternalStorageDirectory()
                         .path + "/UDIRECT/final.mp4")

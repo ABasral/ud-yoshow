@@ -32,6 +32,7 @@ public class ProfileActivity extends AppCompatActivity implements
         ViewPostFragment.OnCommentThreadSelectedListener,
         ViewProfileFragment.OnGridImageSelectedListener{
 
+
     private static final String TAG = "ProfileActivity";
 
     @Override
@@ -82,7 +83,7 @@ public class ProfileActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Log.d(TAG, "onCreate: started.");
-
+       // finish();
         init();
 
 

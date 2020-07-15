@@ -171,9 +171,12 @@ public class MainFeedListAdapter extends ArrayAdapter<Photo> {
         //imageLoader.displayImage(getItem(position).getImage_path(), holder.image);
 
         holder.image.setVideoURI(Uri.parse(Objects.requireNonNull(getItem(position)).getImage_path()));
+        holder.image.canSeekBackward();
+        holder.image.canSeekForward();
+
        // holder.image.setVideoURI(Uri.fromFile(new File(android.os.Environment.getExternalStorageDirectory().getPath()+"/UDIRECT/v2.mp4")));
-       holder.image.seekTo(100);
-        holder.image.start();
+      // holder.image.seekTo(1);
+      //  holder.image.start();
         MediaController mediaController = new MediaController(this.getContext());
         mediaController.setAnchorView(holder.image);
       holder.image.setMediaController(mediaController);
@@ -189,12 +192,12 @@ public class MainFeedListAdapter extends ArrayAdapter<Photo> {
                 return true;
             }
         });
-        holder.image.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+      /*  holder.image.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.setLooping(true);
             }
-        });
+        });*/
 
         //get the profile image and username
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();

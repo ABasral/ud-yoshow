@@ -55,23 +55,24 @@
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:layout_alignParentRight="true"
+         android:layout_marginTop="10dp"
          >
         <Button
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:background="@drawable/red_border_but"
+            android:background="@drawable/white_rounded_button"
             android:text="Share"
             android:layout_marginLeft="20dp"
-            android:textColor="#DC143C"
+            android:textColor="@color/colorPrimary"
             android:id="@+id/share"/>
 
         <Button
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:background="@drawable/red_but"
+            android:background="@drawable/orange_rounded_button"
             android:layout_marginLeft="200dp"
             android:text="Record Again"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPrimary"
             android:id="@+id/again"/>
      </RelativeLayout>
     </FrameLayout>

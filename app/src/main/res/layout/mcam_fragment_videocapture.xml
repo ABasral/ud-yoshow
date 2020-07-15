@@ -60,7 +60,14 @@
         android:paddingTop="@dimen/mcam_content_inset_less"
         tools:ignore="UnusedAttribute"
         >
-
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Align Subject as the guide shows"
+    android:gravity="center"
+    android:layout_marginTop="20dp"
+    android:textColor="@color/primarysecond"
+    />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -191,9 +191,13 @@ protected void setImageRes(ImageView iv, @DrawableRes int res) {
     {
       figure.setImageResource(R.drawable.im3);
     }
-    if (cn==5)
+    if (cn==4)
     {
       figure.setImageResource(R.drawable.im4);
+    }
+    if (cn==5)
+    {
+      figure.setImageResource(R.drawable.im5);
     }
 
 

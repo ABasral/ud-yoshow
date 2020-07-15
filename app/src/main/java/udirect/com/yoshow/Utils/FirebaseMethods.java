@@ -16,6 +16,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.BasicSessionCredentials;
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.event.ProgressEvent;
+import com.amazonaws.event.ProgressListener;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+
+import com.amazonaws.services.s3.internal.Constants;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.StorageClass;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +50,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -51,6 +67,7 @@ import udirect.com.yoshow.models.Story;
 import udirect.com.yoshow.models.User;
 import udirect.com.yoshow.models.UserAccountSettings;
 import udirect.com.yoshow.models.UserSettings;
+import com.amazonaws.auth.BasicSessionCredentials;
 
 
 public class FirebaseMethods {
@@ -109,34 +126,48 @@ public class FirebaseMethods {
 
             Log.d(TAG, "uploadNewStory: video upload bytes: " + bytes.length);
             final byte[] uploadBytes = bytes;
+            CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
+                    mContext.getApplicationContext(),
+                    "ap-south-1:10f12baa-36a5-4094-9ccc-a7adb9e25b24", // Identity pool ID
+                    Regions.AP_SOUTH_1 // Region
+            );
+            AmazonS3 s3Client = new AmazonS3Client(credentialsProvider);
+            //PutObjectRequest request = new PutObjectRequest("yoshow",user_id+"/post"+(count+1), file);
+           // s3Client.putObject(request);
+            URL s3Url = s3Client.getUrl("yoshow", user_id+"/post"+(count+1));
+            addPhotoToDatabase(caption, s3Url.toString());
+            Intent intent = new Intent(mContext, HomeActivity.class);
+            mContext.startActivity(intent);
+            PutObjectRequest putObjectRequest = new PutObjectRequest(
+                    "yoshow", user_id+"/post"+(count+1), file)
+                    .withStorageClass(StorageClass.ReducedRedundancy);
 
-            UploadTask uploadTask = null;
+
+            s3Client.putObject(putObjectRequest);
+
+           /* UploadTask uploadTask = null;
             uploadTask = storageReference.putBytes(bytes);
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri firebaseURL = taskSnapshot.getDownloadUrl();
-                 //   fragment.mStoriesAdapter.stopProgressBar();
+
                     Toast.makeText(mContext, "Upload Success", Toast.LENGTH_SHORT).show();
-                   /// addNewStoryVideoToDatabase(firebaseURL.toString(), uploadBytes);
+
 
                     addPhotoToDatabase(caption, firebaseURL.toString());
 
-                    //navigate to the main feed so the user can see their photo
+
                     Intent intent = new Intent(mContext, HomeActivity.class);
                     mContext.startActivity(intent);
-                   /* if(deleteCompressedVideo){
-                        deleteOutputFile(uri);
-                    }*/
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
-                  //  fragment.mStoriesAdapter.stopProgressBar();
+
                     Toast.makeText(mContext, "Upload Failed", Toast.LENGTH_SHORT).show();
-                 /*   if(deleteCompressedVideo){
-                        deleteOutputFile(uri);
-                    }*/
+
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
 
@@ -153,7 +184,7 @@ public class FirebaseMethods {
                                                                                  Log.d(TAG, "onProgress: upload progress: " + progress + "% done");
                                                                              }
                                      });
-
+*/
 
 
             /*

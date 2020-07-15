@@ -135,6 +135,7 @@ public class SearchActivity extends AppCompatActivity {
 
                 //navigate to profile activity
                 Intent intent =  new Intent(SearchActivity.this, ProfileActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra(getString(R.string.calling_activity), getString(R.string.search_activity));
                 intent.putExtra(getString(R.string.intent_user), mUserList.get(position));
                 startActivity(intent);
