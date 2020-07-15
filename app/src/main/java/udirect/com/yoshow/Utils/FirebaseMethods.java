@@ -134,17 +134,18 @@ public class FirebaseMethods {
             AmazonS3 s3Client = new AmazonS3Client(credentialsProvider);
             //PutObjectRequest request = new PutObjectRequest("yoshow",user_id+"/post"+(count+1), file);
            // s3Client.putObject(request);
-            URL s3Url = s3Client.getUrl("yoshow", user_id+"/post"+(count+1));
-            addPhotoToDatabase(caption, s3Url.toString());
-            Intent intent = new Intent(mContext, HomeActivity.class);
-            mContext.startActivity(intent);
-            PutObjectRequest putObjectRequest = new PutObjectRequest(
+             PutObjectRequest putObjectRequest = new PutObjectRequest(
                     "yoshow", user_id+"/post"+(count+1), file)
                     .withStorageClass(StorageClass.ReducedRedundancy);
 
 
             s3Client.putObject(putObjectRequest);
 
+            URL s3Url = s3Client.getUrl("yoshow", user_id+"/post"+(count+1));
+            addPhotoToDatabase(caption, s3Url.toString());
+            Intent intent = new Intent(mContext, HomeActivity.class);
+            mContext.startActivity(intent);
+           
            /* UploadTask uploadTask = null;
             uploadTask = storageReference.putBytes(bytes);
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
