@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -99,6 +100,7 @@ public class MainFeedListAdapter extends ArrayAdapter<Photo> {
         Heart heart;
         GestureDetector detector;
         Photo photo;
+        ProgressBar progressbar;
     }
 
     @NonNull
@@ -122,6 +124,7 @@ public class MainFeedListAdapter extends ArrayAdapter<Photo> {
             holder.timeDetla = (TextView) convertView.findViewById(R.id.image_time_posted);
             holder.mprofileImage = (CircleImageView) convertView.findViewById(R.id.profile_photo);
             holder.videoframe = (FrameLayout) convertView.findViewById(R.id.videowrapper);
+            holder.progressbar = (ProgressBar) convertView.findViewById(R.id.vidprog);
             convertView.setTag(holder);
         }
         else{
@@ -173,6 +176,31 @@ public class MainFeedListAdapter extends ArrayAdapter<Photo> {
         holder.image.setVideoURI(Uri.parse(Objects.requireNonNull(getItem(position)).getImage_path()));
         holder.image.canSeekBackward();
         holder.image.canSeekForward();
+        holder.progressbar.setVisibility(View.VISIBLE);
+
+        holder.image.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+
+
+
+                mp.start();
+
+                mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+
+                    @Override
+                    public void onVideoSizeChanged(MediaPlayer mp, int arg1, int arg2) {
+                        // TODO Auto-generated method stub
+                        Log.e(TAG, "Changed");
+                        holder.progressbar.setVisibility(View.GONE);
+                        mp.start();
+                    }
+                });
+
+
+            }
+        });
 
        // holder.image.setVideoURI(Uri.fromFile(new File(android.os.Environment.getExternalStorageDirectory().getPath()+"/UDIRECT/v2.mp4")));
       // holder.image.seekTo(1);

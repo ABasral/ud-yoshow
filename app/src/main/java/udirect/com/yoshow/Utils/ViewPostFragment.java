@@ -2,6 +2,7 @@ package udirect.com.yoshow.Utils;
 
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 /*
@@ -21,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -103,6 +105,7 @@ public class ViewPostFragment extends Fragment {
     private String mLikesString = "";
     private User mCurrentUser;
     private FrameLayout videoframe;
+    private ProgressBar progress;
 
     @Nullable
     @Override
@@ -123,6 +126,7 @@ public class ViewPostFragment extends Fragment {
         mLikes = (TextView) view.findViewById(R.id.image_likes);
         mComment = (ImageView) view.findViewById(R.id.speech_bubble);
         mComments = (TextView) view.findViewById(R.id.image_comments_link);
+        progress = (ProgressBar) view.findViewById(R.id.vidprog);
 
         mHeart = new Heart(mHeartWhite, mHeartRed);
         mGestureDetector = new GestureDetector(getActivity(), new GestureListener());
@@ -140,10 +144,35 @@ public class ViewPostFragment extends Fragment {
           //  UniversalImageLoader.setImage(getPhotoFromBundle().getImage_path(), mPostImage, null, "");
            // mPostImage.setVideoURI(Uri.fromFile(new File(android.os.Environment.getExternalStorageDirectory().getPath()+"/UDIRECT/v2.mp4")));
 
+           progress.setVisibility(View.VISIBLE);
+
 
             mPostImage.setVideoURI(Uri.parse(getPhotoFromBundle().getImage_path()));
             mPostImage.seekTo(100);
-            mPostImage.start();
+           // mPostImage.start();
+            mPostImage.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+
+
+
+                    mp.start();
+
+                    mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+
+                        @Override
+                        public void onVideoSizeChanged(MediaPlayer mp, int arg1, int arg2) {
+                            // TODO Auto-generated method stub
+                            Log.e(TAG, "Changed");
+                            progress.setVisibility(View.GONE);
+                            mp.start();
+                        }
+                    });
+
+
+                }
+            });
             MediaController mediaController = new MediaController(this.getContext());
             mediaController.setAnchorView(mPostImage);
             mPostImage.setMediaController(mediaController);
@@ -152,6 +181,13 @@ public class ViewPostFragment extends Fragment {
             mediaController.setLayoutParams(lp);
             ((ViewGroup) mediaController.getParent()).removeView(mediaController);
             videoframe.addView(mediaController);
+            mPostImage.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                @Override
+                public boolean onError(MediaPlayer mp, int what, int extra) {
+                    Log.d("holder.image","setOnErrorListener ");
+                    return true;
+                }
+            });
 
 
             mActivityNumber = getActivityNumFromBundle();

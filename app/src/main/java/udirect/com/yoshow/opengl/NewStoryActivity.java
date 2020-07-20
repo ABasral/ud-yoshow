@@ -3,10 +3,13 @@ package udirect.com.yoshow.opengl;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -16,12 +19,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import udirect.com.yoshow.Home.HomeActivity;
 import udirect.com.yoshow.R;
 import udirect.com.yoshow.Utils.FilePaths;
 import udirect.com.yoshow.materialcamera.MaterialCamera;
 import udirect.com.yoshow.publicvar;
 import android.os.Environment;
 
+import androidx.annotation.RequiresApi;
 
 
 public class NewStoryActivity extends Activity {
@@ -37,7 +42,7 @@ public class NewStoryActivity extends Activity {
 
 
     private int mStartType = RESULT_START_VIDEO;
-
+private ImageView mbackbutton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,8 @@ public class NewStoryActivity extends Activity {
         publicvar g = publicvar.getInstance();
         g.setData(1);
         init();
+
+
     }
 
     private void init(){

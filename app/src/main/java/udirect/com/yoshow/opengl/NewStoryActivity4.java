@@ -202,6 +202,8 @@ public class NewStoryActivity4 extends Activity {
                     }
                 }
             }
+            publicvar g = publicvar.getInstance();
+            g.setData(1);
             Intent intent3 = new Intent(this, mergeractivity.class);//ACTIVITY_NUM = 2
             startActivity(intent3);
 

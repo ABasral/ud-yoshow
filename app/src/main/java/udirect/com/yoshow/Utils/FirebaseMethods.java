@@ -1,5 +1,6 @@
 package udirect.com.yoshow.Utils;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;*/
 import android.os.Environment;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 
 import com.amazonaws.services.s3.internal.Constants;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.StorageClass;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -126,26 +129,51 @@ public class FirebaseMethods {
 
             Log.d(TAG, "uploadNewStory: video upload bytes: " + bytes.length);
             final byte[] uploadBytes = bytes;
-            CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
-                    mContext.getApplicationContext(),
-                    "ap-south-1:10f12baa-36a5-4094-9ccc-a7adb9e25b24", // Identity pool ID
-                    Regions.AP_SOUTH_1 // Region
-            );
-            AmazonS3 s3Client = new AmazonS3Client(credentialsProvider);
-            //PutObjectRequest request = new PutObjectRequest("yoshow",user_id+"/post"+(count+1), file);
-           // s3Client.putObject(request);
-             PutObjectRequest putObjectRequest = new PutObjectRequest(
-                    "yoshow", user_id+"/post"+(count+1), file)
-                    .withStorageClass(StorageClass.ReducedRedundancy);
 
 
-            s3Client.putObject(putObjectRequest);
+            Thread thread = new Thread(new Runnable() {
 
-            URL s3Url = s3Client.getUrl("yoshow", user_id+"/post"+(count+1));
-            addPhotoToDatabase(caption, s3Url.toString());
-            Intent intent = new Intent(mContext, HomeActivity.class);
-            mContext.startActivity(intent);
-           
+                @Override
+                public void run() {
+                    try  {
+
+
+                        CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
+                                mContext.getApplicationContext(),
+                                "ap-south-1:10f12baa-36a5-4094-9ccc-a7adb9e25b24", // Identity pool ID
+                                Regions.AP_SOUTH_1 // Region
+                        );
+                        AmazonS3 s3Client = new AmazonS3Client(credentialsProvider);
+                        //PutObjectRequest request = new PutObjectRequest("yoshow",user_id+"/post"+(count+1), file);
+                        // s3Client.putObject(request);
+
+
+                        PutObjectRequest putObjectRequest = new PutObjectRequest(
+                                "yoshow", user_id+"/post"+(count+1), file)
+                                .withStorageClass(StorageClass.ReducedRedundancy);
+
+                        s3Client.putObject(putObjectRequest);
+
+
+                        //URL s3Url = s3Client.getUrl("yoshow", user_id+"/post"+(count+1));
+                        GeneratePresignedUrlRequest request = new GeneratePresignedUrlRequest("yoshow", user_id+"/post"+(count+1));
+                        URL s3Url = s3Client.generatePresignedUrl(request);
+                        addPhotoToDatabase(caption, s3Url.toString());
+
+                       // progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                       // progressDialog.dismiss();
+
+                        Intent intent = new Intent(mContext, HomeActivity.class);
+                        mContext.startActivity(intent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            thread.start();
+
+
            /* UploadTask uploadTask = null;
             uploadTask = storageReference.putBytes(bytes);
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -154,10 +182,7 @@ public class FirebaseMethods {
                     Uri firebaseURL = taskSnapshot.getDownloadUrl();
 
                     Toast.makeText(mContext, "Upload Success", Toast.LENGTH_SHORT).show();
-
-
                     addPhotoToDatabase(caption, firebaseURL.toString());
-
 
                     Intent intent = new Intent(mContext, HomeActivity.class);
                     mContext.startActivity(intent);

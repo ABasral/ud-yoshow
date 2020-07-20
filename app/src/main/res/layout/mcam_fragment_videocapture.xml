@@ -29,6 +29,7 @@
         android:layout_height="match_parent"
         />
 
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,11 +61,23 @@
         android:paddingTop="@dimen/mcam_content_inset_less"
         tools:ignore="UnusedAttribute"
         >
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+
+            android:id="@+id/backArrowrec"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_backarrow"
+            />
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/help_text"
     android:text="Align Subject as the guide shows"
+    android:textStyle="bold"
     android:gravity="center"
+    android:textSize="25dp"
+
     android:layout_marginTop="20dp"
     android:textColor="@color/primarysecond"
     />
@@ -85,9 +98,10 @@
                 android:layout_gravity="center_vertical"
                 android:padding="@dimen/mcam_content_inset_less"
                 android:scaleType="fitXY"
-                android:visibility="visible"
+                android:visibility="invisible"
                 tools:ignore="ContentDescription"
                 android:layout_marginLeft="10dp"
+
                 />
 
             <Space

@@ -1,5 +1,6 @@
 package udirect.com.yoshow.Share;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
@@ -80,6 +81,16 @@ public class NextActivity extends AppCompatActivity {
                 //upload the image to firebase
                 Toast.makeText(NextActivity.this, "Attempting to upload new Video", Toast.LENGTH_SHORT).show();
                 String caption = mCaption.getText().toString();
+
+
+                ProgressDialog progressDialog = new ProgressDialog(NextActivity.this);
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                //Without this user can hide loader by tapping outside screen
+                progressDialog.setCancelable(false);
+                //Setting Title
+                progressDialog.setTitle("Uploading your video");
+                progressDialog.setMessage("Hold on a bit, your video will be uploaded shortly");
+                progressDialog.show();
 
                // if(intent.hasExtra(getString(R.string.selected_image))){
                     imgUrl = android.os.Environment.getExternalStorageDirectory().getPath()+"/UDIRECT/final.mp4";

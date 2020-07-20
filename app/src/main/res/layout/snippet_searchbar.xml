@@ -23,7 +23,7 @@
                     android:layout_centerVertical="true"
                     android:hint="Search..."
                     android:cursorVisible="true"
-                    android:textCursorDrawable="@color/black"
+                    android:textCursorDrawable="@drawable/cursor"
                     android:textColorHint="@color/colorPrimaryDark"
                     android:textSize="20sp"
                     android:textColor="@color/colorPrimaryDark"

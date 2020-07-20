@@ -49,9 +49,7 @@ import udirect.com.yoshow.models.User;
 import udirect.com.yoshow.models.UserAccountSettings;
 import udirect.com.yoshow.models.UserSettings;
 
-/**
- * Created by User on 6/29/2017.
- */
+
 
 public class ViewProfileFragment extends Fragment {
 

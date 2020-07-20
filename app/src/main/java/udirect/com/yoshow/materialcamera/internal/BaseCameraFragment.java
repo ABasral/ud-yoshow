@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -39,6 +41,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import java.io.File;
 
 
+import udirect.com.yoshow.Home.HomeActivity;
 import udirect.com.yoshow.R;
 import udirect.com.yoshow.materialcamera.MaterialCamera;
 import udirect.com.yoshow.materialcamera.util.CameraUtil;
@@ -49,6 +52,9 @@ import static udirect.com.yoshow.materialcamera.internal.BaseCaptureActivity.CAM
 import static udirect.com.yoshow.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_ALWAYS_ON;
 import static udirect.com.yoshow.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_AUTO;
 import static udirect.com.yoshow.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_OFF;
+
+import udirect.com.yoshow.opengl.NewStoryActivity2;
+import udirect.com.yoshow.opengl.NewStoryActivity3;
 import udirect.com.yoshow.publicvar;
 
 abstract class BaseCameraFragment extends Fragment
@@ -67,6 +73,7 @@ abstract class BaseCameraFragment extends Fragment
 //  protected TextView mDelayStartCountdown;
   protected Switch mVideoSwitch;
   protected ImageView figure;
+  protected TextView helptext;
   private boolean mIsRecording;
   protected String mOutputUri;
   protected BaseCaptureInterface mInterface;
@@ -77,6 +84,7 @@ abstract class BaseCameraFragment extends Fragment
   private int mIconTextColor;
   private int mIconTextColorDark;
   private int mRecordButtonColor;
+  protected ImageView mbackbutton;
 
   protected static void LOG(Object context, String message) {
     Log.d(
@@ -160,6 +168,7 @@ protected void setImageRes(ImageView iv, @DrawableRes int res) {
 
 //    mDelayStartCountdown = (TextView) view.findViewById(R.id.delayStartCountdown);
 //    mButtonVideo = (ImageButton) view.findViewById(R.id.video);
+    mbackbutton = (ImageView) view.findViewById(R.id.backArrowrec);
     mButtonVideo = (ImageButton) view.findViewById(R.id.videoButton);
     mButtonStillshot = (ImageButton) view.findViewById(R.id.stillshot);
     mRecordDuration = (TextView) view.findViewById(R.id.recordDuration);
@@ -169,6 +178,7 @@ protected void setImageRes(ImageView iv, @DrawableRes int res) {
     mButtonFlashVideo = (ImageButton) view.findViewById(R.id.flashVideo);
     setupFlashMode();
     figure = (ImageView) view.findViewById(R.id.figure);
+    helptext = (TextView) view.findViewById(R.id.help_text);
     mButtonVideo.setOnClickListener(this);
     mButtonStillshot.setOnClickListener(this);
     mButtonFacing.setOnClickListener(this);
@@ -176,28 +186,42 @@ protected void setImageRes(ImageView iv, @DrawableRes int res) {
     mButtonFlashVideo.setOnClickListener(this);
     mVideoSwitch.setOnClickListener(this);
 
+    mbackbutton.setOnClickListener(new View.OnClickListener() {
+      @RequiresApi(api = Build.VERSION_CODES.M)
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(getContext(), HomeActivity.class);
+        startActivity(intent);
+      }
+    });
+
     publicvar g = publicvar.getInstance();
     int cn = g.getData();
 
     if (cn==1)
     {
       figure.setImageResource(R.drawable.im1);
+      helptext.setText("Align Subject as the guide shows");
     }
     if (cn==2)
     {
       figure.setImageResource(R.drawable.im2);
+      helptext.setText("Repeat Action");
     }
     if (cn==3)
     {
       figure.setImageResource(R.drawable.im3);
+      helptext.setText("Repeat Action");
     }
     if (cn==4)
     {
       figure.setImageResource(R.drawable.im4);
+      helptext.setText("Repeat Action");
     }
     if (cn==5)
     {
       figure.setImageResource(R.drawable.im5);
+      helptext.setText("Repeat Action");
     }
 
 
