@@ -286,7 +286,7 @@ public class FirebaseMethods {
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri firebaseUrl = taskSnapshot.getDownloadUrl();
+                    Uri firebaseUrl = taskSnapshot.getUploadSessionUri();
 
                     Toast.makeText(mContext, "photo upload success", Toast.LENGTH_SHORT).show();
 
@@ -347,7 +347,7 @@ public class FirebaseMethods {
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri firebaseURL = taskSnapshot.getDownloadUrl();
+                    Uri firebaseURL = taskSnapshot.getUploadSessionUri();
                     fragment.mStoriesAdapter.stopProgressBar();
                     Toast.makeText(mContext, "Upload Success", Toast.LENGTH_SHORT).show();
                     addNewStoryImageToDatabase(firebaseURL.toString());
@@ -393,7 +393,7 @@ public class FirebaseMethods {
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri firebaseURL = taskSnapshot.getDownloadUrl();
+                    Uri firebaseURL = taskSnapshot.getUploadSessionUri();
                     fragment.mStoriesAdapter.stopProgressBar();
                     Toast.makeText(mContext, "Upload Success", Toast.LENGTH_SHORT).show();
                     addNewStoryVideoToDatabase(firebaseURL.toString(), uploadBytes);
