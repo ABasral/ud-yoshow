@@ -24,16 +24,25 @@
         <activity android:name=".introactivity"></activity>
         <activity android:name=".opengl.mergeractivity" />
         <activity android:name=".opengl.NewStoryActivity3next"
+
+            android:launchMode="singleInstance"
            />
         <activity android:name=".edit" />
         <activity android:name=".opengl.NewStoryActivity4"
+
+            android:launchMode="singleInstance"
             />
         <activity android:name=".opengl.NewStoryActivity3"
+
+            android:launchMode="singleInstance"
            />
         <activity android:name=".opengl.NewStoryActivity2"
+
+            android:launchMode="singleInstance"
            />
         <activity
             android:name=".Home.HomeActivity"
+            android:noHistory="true"
             android:launchMode="singleInstance" />
         <activity
             android:name=".Likes.LikesActivity"
@@ -65,6 +74,7 @@
             android:launchMode="singleInstance" />
         <activity
             android:name=".opengl.NewStoryActivity"
+
 
             android:launchMode="singleInstance" />
         <activity

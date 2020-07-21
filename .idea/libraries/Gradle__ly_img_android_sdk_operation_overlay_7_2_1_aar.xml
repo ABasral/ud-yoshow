@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: ly.img.android.sdk.operation:overlay:7.2.1@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/322f4a71613d29a7679145287367059e/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/322f4a71613d29a7679145287367059e/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/ly.img.android.sdk.operation/overlay/7.2.1/27e8277c489cfb79f9e2332360933072e9a520bb/overlay-7.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

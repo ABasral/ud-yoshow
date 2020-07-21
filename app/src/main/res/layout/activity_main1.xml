@@ -37,7 +37,7 @@
             android:background="@drawable/white_rounded_button"
             android:text="Share"
             android:layout_marginLeft="20dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:id="@+id/share"/>
 
         <Button
@@ -46,7 +46,7 @@
             android:background="@drawable/orange_rounded_button"
             android:layout_marginLeft="200dp"
             android:text="Record Again"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:id="@+id/again"/>
     </RelativeLayout>
 

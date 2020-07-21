@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import udirect.com.yoshow.Home.HomeActivity;
 import udirect.com.yoshow.R;
 import udirect.com.yoshow.Utils.FilePaths;
 import udirect.com.yoshow.materialcamera.MaterialCamera;
@@ -109,7 +110,7 @@ public class NewStoryActivity3next extends Activity {
 //                .autoRecordWithDelaySec(5)                         // The video camera will start recording automatically after a 5 second countdown. This disables switching between the front and back camera initially.
 //                .autoRecordWithDelayMs(5000)                       // Same as the above, expressed with milliseconds instead of seconds.
                     .audioDisabled(false)                              // Set to true to record video without any audio.
-                    .countdownSeconds(60f)
+                    .countdownSeconds(15f)
                     .start(CAMERA_RQ);
         }
         else{
@@ -144,7 +145,7 @@ public class NewStoryActivity3next extends Activity {
 //                .autoRecordWithDelaySec(5)                         // The video camera will start recording automatically after a 5 second countdown. This disables switching between the front and back camera initially.
 //                .autoRecordWithDelayMs(5000)                       // Same as the above, expressed with milliseconds instead of seconds.
                     .audioDisabled(false)                              // Set to true to record video without any audio.
-                    .countdownSeconds(60f)
+                    .countdownSeconds(15f)
                     .stillShot()
                     .start(CAMERA_RQ);
         }
@@ -208,7 +209,9 @@ public class NewStoryActivity3next extends Activity {
 
 
             Intent intent = new Intent(NewStoryActivity3next.this,NewStoryActivity4.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+            NewStoryActivity3next.this.finish();
 
               /*  if(data.hasExtra(MaterialCamera.DELETE_UPLOAD_FILE_EXTRA)){
                     setResult(

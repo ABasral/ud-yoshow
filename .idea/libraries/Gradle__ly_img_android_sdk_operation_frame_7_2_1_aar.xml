@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: ly.img.android.sdk.operation:frame:7.2.1@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/d073cdabd92f8d16817e32f5c3512778/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/d073cdabd92f8d16817e32f5c3512778/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/ly.img.android.sdk.operation/frame/7.2.1/27e8277c489cfb79f9e2332360933072e9a520bb/frame-7.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

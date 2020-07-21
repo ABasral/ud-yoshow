@@ -129,7 +129,7 @@ private ImageView mbackbutton;
 //                .autoRecordWithDelaySec(5)                         // The video camera will start recording automatically after a 5 second countdown. This disables switching between the front and back camera initially.
 //                .autoRecordWithDelayMs(5000)                       // Same as the above, expressed with milliseconds instead of seconds.
                     .audioDisabled(false)                              // Set to true to record video without any audio.
-                    .countdownSeconds(60f)
+                    .countdownSeconds(15f)
                     .start(CAMERA_RQ);
         }
         else{
@@ -164,7 +164,7 @@ private ImageView mbackbutton;
 //                .autoRecordWithDelaySec(5)                         // The video camera will start recording automatically after a 5 second countdown. This disables switching between the front and back camera initially.
 //                .autoRecordWithDelayMs(5000)                       // Same as the above, expressed with milliseconds instead of seconds.
                     .audioDisabled(false)                              // Set to true to record video without any audio.
-                    .countdownSeconds(60f)
+                    .countdownSeconds(15f)
                     .stillShot()
                     .start(CAMERA_RQ);
         }
@@ -228,7 +228,9 @@ private ImageView mbackbutton;
 
 
                 Intent intent = new Intent(NewStoryActivity.this,NewStoryActivity2.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+            NewStoryActivity.this.finish();
 
               /*  if(data.hasExtra(MaterialCamera.DELETE_UPLOAD_FILE_EXTRA)){
                     setResult(

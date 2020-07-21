@@ -18,6 +18,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.eschao.android.widget.elasticlistview.ElasticListView;
 import com.eschao.android.widget.elasticlistview.LoadFooter;
 import com.eschao.android.widget.elasticlistview.OnLoadListener;

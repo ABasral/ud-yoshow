@@ -28,12 +28,22 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.StorageClass;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
+import java.net.URL;
 
 import udirect.com.yoshow.Login.LoginActivity;
 import udirect.com.yoshow.R;
@@ -90,6 +100,37 @@ public class HomeActivity extends AppCompatActivity implements
         mRelativeLayout = (RelativeLayout) findViewById(R.id.relLayoutParent);
         checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
         //createDirectory();
+
+
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try  {
+                    CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
+                            mContext.getApplicationContext(),
+                            "ap-south-1:10f12baa-36a5-4094-9ccc-a7adb9e25b24", // Identity pool ID
+                            Regions.AP_SOUTH_1 // Region
+                    );
+
+                    AmazonS3 s3Client = new AmazonS3Client(credentialsProvider);
+                    GeneratePresignedUrlRequest request = new GeneratePresignedUrlRequest("yoshow", "/post");
+                    URL s3Url = s3Client.generatePresignedUrl(request);
+                    String temp = s3Url.toString();
+                    Log.d("check","connected to s3"+temp);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+
+
+
+
         setupFirebaseAuth();
 
         initImageLoader();

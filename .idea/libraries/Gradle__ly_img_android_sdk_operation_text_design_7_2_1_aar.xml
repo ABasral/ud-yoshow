@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: ly.img.android.sdk.operation:text-design:7.2.1@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/6241eb8f45f8e608926b46d20d54ba62/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/6241eb8f45f8e608926b46d20d54ba62/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/ly.img.android.sdk.operation/text-design/7.2.1/ce585d47188983e9faeae334471845da11daa63b/text-design-7.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

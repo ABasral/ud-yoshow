@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: ly.img.android.sdk:serializer:7.2.1@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/c7a12981b8f1344f6c74a89f11e41d2d/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/c7a12981b8f1344f6c74a89f11e41d2d/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/ly.img.android.sdk/serializer/7.2.1/438e9d9afbd596ff3bee251081c5cc2a81bd37ae/serializer-7.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

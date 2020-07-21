@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: ly.img.android.sdk.operation:filter:7.2.1@aar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/1286397e0a9939637deef93a27b9a39a/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/1286397e0a9939637deef93a27b9a39a/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/ly.img.android.sdk.operation/filter/7.2.1/7fbfca47d627d1cc146db40084376fdfab67d551/filter-7.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

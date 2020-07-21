@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: ly.img.android.sdk:core:7.2.1@aar">
+    <ANNOTATIONS>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/32824e5b4fa3de0db8d2afcdfe90078e/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/32824e5b4fa3de0db8d2afcdfe90078e/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../.gradle/caches/transforms-2/files-2.1/32824e5b4fa3de0db8d2afcdfe90078e/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/ly.img.android.sdk/core/7.2.1/5bb579ab64bbb4aca1a97880bcf19ed3bdc8faf4/core-7.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

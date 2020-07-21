@@ -48,6 +48,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -150,7 +151,8 @@ public class FirebaseMethods {
 
                         PutObjectRequest putObjectRequest = new PutObjectRequest(
                                 "yoshow", user_id+"/post"+(count+1), file)
-                                .withStorageClass(StorageClass.ReducedRedundancy);
+                                .withStorageClass(StorageClass.ReducedRedundancy)
+                                .withCannedAcl(CannedAccessControlList.PublicRead);
 
                         s3Client.putObject(putObjectRequest);
 

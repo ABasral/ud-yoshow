@@ -190,6 +190,8 @@ protected void setImageRes(ImageView iv, @DrawableRes int res) {
       @RequiresApi(api = Build.VERSION_CODES.M)
       @Override
       public void onClick(View v) {
+        publicvar g = publicvar.getInstance();
+        g.setData(1);
         Intent intent = new Intent(getContext(), HomeActivity.class);
         startActivity(intent);
       }
