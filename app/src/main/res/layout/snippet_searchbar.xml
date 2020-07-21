@@ -18,19 +18,19 @@
 
 
                 <EditText
+                    android:id="@+id/search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:hint="Search..."
-                    android:cursorVisible="true"
-                    android:textCursorDrawable="@drawable/cursor"
-                    android:textColorHint="@color/colorPrimaryDark"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimaryDark"
                     android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:id="@+id/search"
-                    android:background="@null"/>
+                    android:layout_marginEnd="312dp"
+                    android:background="@null"
+                    android:hint="Search..."
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textColorHint="@color/colorPrimaryDark"
+                    android:textSize="20sp" />
 
 
 
