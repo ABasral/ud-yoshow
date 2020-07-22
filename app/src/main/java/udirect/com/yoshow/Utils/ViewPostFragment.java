@@ -30,6 +30,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +45,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -106,6 +112,7 @@ public class ViewPostFragment extends Fragment {
     private User mCurrentUser;
     private FrameLayout videoframe;
     private ProgressBar progress;
+   // private ImageView msavechanges;
 
     @Nullable
     @Override
@@ -126,10 +133,13 @@ public class ViewPostFragment extends Fragment {
         mLikes = (TextView) view.findViewById(R.id.image_likes);
         mComment = (ImageView) view.findViewById(R.id.speech_bubble);
         mComments = (TextView) view.findViewById(R.id.image_comments_link);
-        progress = (ProgressBar) view.findViewById(R.id.vidprog);
+       // progress = (ProgressBar) view.findViewById(R.id.vidprog);
+      //  msavechanges = (ImageView) view.findViewById(R.id.saveChanges);
 
         mHeart = new Heart(mHeartWhite, mHeartRed);
         mGestureDetector = new GestureDetector(getActivity(), new GestureListener());
+
+
 
         setupFirebaseAuth();
         setupBottomNavigationView();
@@ -144,35 +154,12 @@ public class ViewPostFragment extends Fragment {
           //  UniversalImageLoader.setImage(getPhotoFromBundle().getImage_path(), mPostImage, null, "");
            // mPostImage.setVideoURI(Uri.fromFile(new File(android.os.Environment.getExternalStorageDirectory().getPath()+"/UDIRECT/v2.mp4")));
 
-           progress.setVisibility(View.VISIBLE);
-
+          // progress.setVisibility(View.VISIBLE);
 
             mPostImage.setVideoURI(Uri.parse(getPhotoFromBundle().getImage_path()));
             mPostImage.seekTo(100);
            // mPostImage.start();
-            mPostImage.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-
-
-
-                    mp.start();
-
-                    mp.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
-
-                        @Override
-                        public void onVideoSizeChanged(MediaPlayer mp, int arg1, int arg2) {
-                            // TODO Auto-generated method stub
-                            Log.e(TAG, "Changed");
-                            progress.setVisibility(View.GONE);
-                            mp.start();
-                        }
-                    });
-
-
-                }
-            });
             MediaController mediaController = new MediaController(this.getContext());
             mediaController.setAnchorView(mPostImage);
             mPostImage.setMediaController(mediaController);
@@ -522,6 +509,7 @@ public class ViewPostFragment extends Fragment {
                 getActivity().getSupportFragmentManager().popBackStack();
             }
         });
+
 
         mComment.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -42,7 +42,7 @@
            />
         <activity
             android:name=".Home.HomeActivity"
-            android:noHistory="true"
+
             android:launchMode="singleInstance" />
         <activity
             android:name=".Likes.LikesActivity"
@@ -56,6 +56,7 @@
             android:launchMode="singleInstance" />
         <activity
             android:name=".Share.NextActivity"
+            android:noHistory="true"
             android:launchMode="singleInstance" />
         <activity
             android:name=".Login.LoginActivity"
@@ -74,8 +75,6 @@
             android:launchMode="singleInstance" />
         <activity
             android:name=".opengl.NewStoryActivity"
-
-
             android:launchMode="singleInstance" />
         <activity
             android:name=".Search.SearchActivity"

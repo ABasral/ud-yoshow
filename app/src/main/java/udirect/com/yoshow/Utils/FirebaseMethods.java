@@ -150,7 +150,7 @@ public class FirebaseMethods {
 
 
                         PutObjectRequest putObjectRequest = new PutObjectRequest(
-                                "yoshow", user_id+"/post"+(count+1), file)
+                                "yoshow",user_id+"/post"+(count+1), file)
                                 .withStorageClass(StorageClass.ReducedRedundancy)
                                 .withCannedAcl(CannedAccessControlList.PublicRead);
 
@@ -158,9 +158,10 @@ public class FirebaseMethods {
 
 
                         //URL s3Url = s3Client.getUrl("yoshow", user_id+"/post"+(count+1));
-                        GeneratePresignedUrlRequest request = new GeneratePresignedUrlRequest("yoshow", user_id+"/post"+(count+1));
-                        URL s3Url = s3Client.generatePresignedUrl(request);
-                        addPhotoToDatabase(caption, s3Url.toString());
+                      //  GeneratePresignedUrlRequest request = new GeneratePresignedUrlRequest("yoshow", user_id+"/post"+(count+1));
+                      //  URL s3Url = s3Client.generatePresignedUrl(request);
+                        String urlstore = "https://yoshow.s3.ap-south-1.amazonaws.com/"+user_id+"/post"+(count+1);
+                        addPhotoToDatabase(caption, urlstore);
 
                        // progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                        // progressDialog.dismiss();

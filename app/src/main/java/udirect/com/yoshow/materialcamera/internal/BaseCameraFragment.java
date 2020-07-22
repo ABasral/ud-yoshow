@@ -53,6 +53,7 @@ import static udirect.com.yoshow.materialcamera.internal.BaseCaptureActivity.FLA
 import static udirect.com.yoshow.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_AUTO;
 import static udirect.com.yoshow.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_OFF;
 
+import udirect.com.yoshow.opengl.NewStoryActivity;
 import udirect.com.yoshow.opengl.NewStoryActivity2;
 import udirect.com.yoshow.opengl.NewStoryActivity3;
 import udirect.com.yoshow.publicvar;
@@ -193,7 +194,11 @@ protected void setImageRes(ImageView iv, @DrawableRes int res) {
         publicvar g = publicvar.getInstance();
         g.setData(1);
         Intent intent = new Intent(getContext(), HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        getActivity().finish();
+        //Activity this.getClass().getSimpleName();
+        
       }
     });
 

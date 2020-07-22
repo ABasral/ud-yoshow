@@ -16,7 +16,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.net.URL;
 
 import udirect.com.yoshow.R;
 import udirect.com.yoshow.Utils.ViewCommentsFragment;
@@ -65,6 +72,31 @@ public class ProfileActivity extends AppCompatActivity implements
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(getString(R.string.view_post_fragment));
         transaction.commit();
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try  {
+                    CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
+                            mContext.getApplicationContext(),
+                            "ap-south-1:10f12baa-36a5-4094-9ccc-a7adb9e25b24", // Identity pool ID
+                            Regions.AP_SOUTH_1 // Region
+                    );
+
+                    AmazonS3 s3Client = new AmazonS3Client(credentialsProvider);
+                    GeneratePresignedUrlRequest request = new GeneratePresignedUrlRequest("yoshow", "/post");
+                    URL s3Url = s3Client.generatePresignedUrl(request);
+                    String temp = s3Url.toString();
+                    Log.d("check","connected to s3"+temp);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
 
     }
 
