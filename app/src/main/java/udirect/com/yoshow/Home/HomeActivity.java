@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements
         HomeFragment fragment = (HomeFragment)getSupportFragmentManager()
                 .findFragmentByTag("android:switcher:" + R.id.viewpager_container + ":" + mViewPager.getCurrentItem());
         if(fragment != null){
-            fragment.displayMorePhotos();
+         //   fragment.displayMorePhotos();
         }
     }
 
