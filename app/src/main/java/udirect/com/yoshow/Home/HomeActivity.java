@@ -28,12 +28,22 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.StorageClass;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
+import java.net.URL;
 
 import udirect.com.yoshow.Login.LoginActivity;
 import udirect.com.yoshow.R;
@@ -57,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements
         HomeFragment fragment = (HomeFragment)getSupportFragmentManager()
                 .findFragmentByTag("android:switcher:" + R.id.viewpager_container + ":" + mViewPager.getCurrentItem());
         if(fragment != null){
-          //  fragment.displayMorePhotos();
+         //   fragment.displayMorePhotos();
         }
     }
 
@@ -90,6 +100,37 @@ public class HomeActivity extends AppCompatActivity implements
         mRelativeLayout = (RelativeLayout) findViewById(R.id.relLayoutParent);
         checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
         //createDirectory();
+
+
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try  {
+                    CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
+                            mContext.getApplicationContext(),
+                            "ap-south-1:10f12baa-36a5-4094-9ccc-a7adb9e25b24", // Identity pool ID
+                            Regions.AP_SOUTH_1 // Region
+                    );
+
+                    AmazonS3 s3Client = new AmazonS3Client(credentialsProvider);
+                    GeneratePresignedUrlRequest request = new GeneratePresignedUrlRequest("yoshow", "/post");
+                    URL s3Url = s3Client.generatePresignedUrl(request);
+                    String temp = s3Url.toString();
+                    Log.d("check","connected to s3"+temp);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+
+
+
+
         setupFirebaseAuth();
 
         initImageLoader();
@@ -143,7 +184,7 @@ public class HomeActivity extends AppCompatActivity implements
 //                        .show();
 //            }
 //        }
-        if (requestCode == STORAGE_PERMISSION_CODE) {
+         if (requestCode == STORAGE_PERMISSION_CODE) {
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(HomeActivity.this,
@@ -268,13 +309,13 @@ public class HomeActivity extends AppCompatActivity implements
      */
     private void setupViewPager(){
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        //   adapter.addFragment(new CameraFragment()); //index 0
+     //   adapter.addFragment(new CameraFragment()); //index 0
         adapter.addFragment(new HomeFragment()); //index 1
-        // adapter.addFragment(new MessagesFragment()); //index 2
+       // adapter.addFragment(new MessagesFragment()); //index 2
         mViewPager.setAdapter(adapter);
 
-        //   TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        //  tabLayout.setupWithViewPager(mViewPager);
+     //   TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+      //  tabLayout.setupWithViewPager(mViewPager);
 
         //tabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
         //tabLayout.getTabAt(1).setIcon(R.drawable.ic_instagram_black);
@@ -303,14 +344,14 @@ public class HomeActivity extends AppCompatActivity implements
      * checks to see if the @param 'user' is logged in
      * @param user
      */
-    private void checkCurrentUser(FirebaseUser user){
-        Log.d(TAG, "checkCurrentUser: checking if user is logged in.");
+     private void checkCurrentUser(FirebaseUser user){
+         Log.d(TAG, "checkCurrentUser: checking if user is logged in.");
 
-        if(user == null){
-            Intent intent = new Intent(mContext, LoginActivity.class);
-            startActivity(intent);
-        }
-    }
+         if(user == null){
+             Intent intent = new Intent(mContext, LoginActivity.class);
+             startActivity(intent);
+         }
+     }
     /**
      * Setup the firebase auth object
      */
