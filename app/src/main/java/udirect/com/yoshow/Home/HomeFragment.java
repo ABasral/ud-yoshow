@@ -54,7 +54,7 @@ import udirect.com.yoshow.models.UserAccountSettings;
 public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadListener {
 
     private static final String TAG = "HomeFragment";
-
+    int testint = 0;
     @Override
     public void onUpdate() {
         Log.d(TAG, "ElasticListView: updating list view...");
@@ -103,16 +103,18 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-               // Toast.makeText(getContext(),"Scrolled", Toast.LENGTH_LONG).show();
+                // Toast.makeText(getContext(),"Scrolled", Toast.LENGTH_LONG).show();
                /* if (mListView.getLastVisiblePosition() == resultsCount &&
                         mListView.getChildAt(mListView.getChildCount() - 1).getBottom() <= mListView.getHeight())*/
-                if (mListView.getLastVisiblePosition() == resultsCount)
-                {
+               if(resultsCount>=3 && testint==1)
+               {
+                if (mListView.getLastVisiblePosition() == resultsCount) {
                     //It is scrolled all the way down here
-                    Toast.makeText(getContext(),"Inside", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Inside", Toast.LENGTH_LONG).show();
                     morePhotos();
 
                 }
+            }
             }
 
             @Override
@@ -456,6 +458,10 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
                     Log.d(TAG, "displayPhotos: adding a photo to paginated list: " + mPhotos.get(i).getPhoto_id());
                 }
 
+                if(resultsCount==3)
+                {
+                    testint=1;
+                }
                 adapter = new MainFeedListAdapter(getActivity(), R.layout.layout_mainfeed_listitem, mPaginatedPhotos);
                 mListView.setAdapter(adapter);
 
@@ -475,7 +481,7 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
         adapter = new MainFeedListAdapter(getActivity(), R.layout.layout_mainfeed_listitem, mtempPaginatedPhotos);
         resultsCount++;
         mListView.setAdapter(adapter);
-        mListView().setSelection(resultscount-1);
+        mListView.setSelection(resultsCount-1);
         // Notify update is done
         mListView.notifyUpdated();
 
