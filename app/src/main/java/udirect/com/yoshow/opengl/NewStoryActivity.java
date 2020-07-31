@@ -46,8 +46,10 @@ private ImageView mbackbutton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_story);
+
         Toast.makeText(this,"ALIGN THE SUBJECT TO THE SCREEN",Toast.LENGTH_LONG).show();
         publicvar g = publicvar.getInstance();
         g.setData(1);
@@ -59,10 +61,13 @@ private ImageView mbackbutton;
     private void init(){
         Log.d(TAG, "init: initializing material camera.");
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+     //   getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+       //         WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+
+
+       // DisplayMetrics displaymetrics = new DisplayMetrics();
+       // this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
 
 
 /*

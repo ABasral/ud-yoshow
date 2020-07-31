@@ -172,6 +172,7 @@ public class ProfileFragment extends Fragment {
                         photo.setUser_id(objectMap.get(getString(R.string.field_user_id)).toString());
                         photo.setDate_created(objectMap.get(getString(R.string.field_date_created)).toString());
                         photo.setImage_path(objectMap.get(getString(R.string.field_image_path)).toString());
+                        photo.setThumb_path(objectMap.get("thumb_path").toString());
 
                         ArrayList<Comment> comments = new ArrayList<Comment>();
                         for (DataSnapshot dSnapshot : singleSnapshot
@@ -208,8 +209,13 @@ public class ProfileFragment extends Fragment {
                 for(int i = 0; i < photos.size(); i++){
                     imgUrls.add(photos.get(i).getImage_path());
                 }
+                ArrayList<String> thumbUrls = new ArrayList<String>();
+                for(int i = 0; i < photos.size(); i++){
+                    thumbUrls.add(photos.get(i).getThumb_path());
+                }
+
                 GridImageAdapter adapter = new GridImageAdapter(getActivity(),R.layout.layout_grid_imageview,
-                        "", imgUrls);
+                        "", thumbUrls);
                 gridView.setAdapter(adapter);
 
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -29,6 +29,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 import udirect.com.yoshow.R;
 import udirect.com.yoshow.Utils.FirebaseMethods;
 
@@ -142,6 +148,50 @@ public class NextActivity extends AppCompatActivity {
                 MediaStore.Images.Thumbnails.MINI_KIND);
             Log.d(TAG, "setImage: got new bitmap");
             image.setImageBitmap(thumb);
+
+        File myDir = new File(android.os.Environment.getExternalStorageDirectory().getPath()+"/UDIRECT/thumb");
+        File file = new File(myDir, "thumb.jpeg");
+        Log.i(TAG, "" + file);
+        if (file.exists())
+            file.delete();
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            thumb.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+        ///String path = Environment.getExternalStorageDirectory().toString();
+      /*  OutputStream fOutputStream = null;
+        File file = new File(android.os.Environment.getExternalStorageDirectory().getPath()+"/UDIRECT/thumb" ,"thumb.JPEG");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+
+        try {
+            fOutputStream = new FileOutputStream(file);
+
+            thumb.compress(Bitmap.CompressFormat.JPEG, 100, fOutputStream);
+
+            fOutputStream.flush();
+            fOutputStream.close();
+
+           // MediaStore.Images.Media.insertImage(getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Save Failed", Toast.LENGTH_SHORT).show();
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Save Failed", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+*/
 
     }
 

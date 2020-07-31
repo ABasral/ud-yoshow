@@ -10,18 +10,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amazonaws.auth.CognitoCachingCredentialsProvider;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.eschao.android.widget.elasticlistview.ElasticListView;
 import com.eschao.android.widget.elasticlistview.LoadFooter;
 import com.eschao.android.widget.elasticlistview.OnLoadListener;
@@ -56,6 +54,7 @@ import udirect.com.yoshow.models.UserAccountSettings;
 public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadListener {
 
     private static final String TAG = "HomeFragment";
+    int testint = 0;
 
     @Override
     public void onUpdate() {
@@ -77,6 +76,7 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
     //vars
     private ArrayList<Photo> mPhotos;
     private ArrayList<Photo> mPaginatedPhotos;
+    private ArrayList<Photo> mtempPaginatedPhotos;
     private ArrayList<String> mFollowing;
     private int recursionIterator = 0;
     //    private ListView mListView;
@@ -98,8 +98,32 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
 //        mListView = (ListView) view.findViewById(R.id.listView);
         mListView = (ElasticListView) view.findViewById(R.id.listView);
 
-        initListViewRefresh();
+       // initListViewRefresh();
         getFollowing();
+
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                // Toast.makeText(getContext(),"Scrolled", Toast.LENGTH_LONG).show();
+               /* if (mListView.getLastVisiblePosition() == resultsCount &&
+                        mListView.getChildAt(mListView.getChildCount() - 1).getBottom() <= mListView.getHeight())*/
+               if(resultsCount>=3 && testint==1)
+               {
+                if (mListView.getLastVisiblePosition() == resultsCount) {
+                    //It is scrolled all the way down here
+                    Toast.makeText(getContext(), "Inside", Toast.LENGTH_LONG).show();
+                    morePhotos();
+
+                }
+            }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
+
 
         return view;
     }
@@ -111,7 +135,7 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
                 .getLoadFooter().setLoadAction(LoadFooter.LoadAction.RELEASE_TO_LOAD);
         mListView.setOnUpdateListener(this)
                 .setOnLoadListener(this);
-//        mListView.requestUpdate();
+      //  mListView.requestUpdate();
     }
 
 
@@ -153,7 +177,7 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
 
                     }
                     if (count == mFollowing.size() - 1) {
-                       // getFriendsStories();
+                        // getFriendsStories();
                     }
                 }
 
@@ -259,7 +283,7 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
         Log.d(TAG, "initRecyclerView: init recyclerview.");
         if(mRecyclerView == null){
             TextView textView = new TextView(getActivity());
-          //  textView.setText("Stories");
+            //  textView.setText("Stories");
             textView.setTextColor(getResources().getColor(R.color.black));
             textView.setTextSize(14);
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
@@ -296,6 +320,9 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
         if(mPaginatedPhotos != null){
             mPaginatedPhotos.clear();
         }
+        if(mtempPaginatedPhotos != null){
+            mtempPaginatedPhotos.clear();
+        }
         mMasterStoriesArray = new JSONArray(new ArrayList<String>());
         if(mStoriesAdapter != null){
             mStoriesAdapter.notifyDataSetChanged();
@@ -306,6 +333,7 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
         mFollowing = new ArrayList<>();
         mPhotos = new ArrayList<>();
         mPaginatedPhotos = new ArrayList<>();
+        mtempPaginatedPhotos = new ArrayList<>();
         mUserAccountSettings = new ArrayList<>();
     }
 
@@ -419,15 +447,20 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
 
                 //we want to load 10 at a time. So if there is more than 10, just load 10 to start
                 int iterations = mPhotos.size();
-                if(iterations > 10){
-                    iterations = 10;
+                if(iterations > 3){
+                    iterations = 3;
                 }
 //
                 resultsCount = 0;
                 for(int i = 0; i < iterations; i++){
                     mPaginatedPhotos.add(mPhotos.get(i));
+                    mtempPaginatedPhotos.add(mPhotos.get(i));
                     resultsCount++;
                     Log.d(TAG, "displayPhotos: adding a photo to paginated list: " + mPhotos.get(i).getPhoto_id());
+                }
+                if(resultsCount==3)
+                {
+                    testint=1;
                 }
 
                 adapter = new MainFeedListAdapter(getActivity(), R.layout.layout_mainfeed_listitem, mPaginatedPhotos);
@@ -443,8 +476,19 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
             }
         }
     }
+    private void morePhotos(){
 
-    public void displayMorePhotos(){
+        mtempPaginatedPhotos.add(mPhotos.get(resultsCount));
+        adapter = new MainFeedListAdapter(getActivity(), R.layout.layout_mainfeed_listitem, mtempPaginatedPhotos);
+        resultsCount++;
+        mListView.setAdapter(adapter);
+        // Notify update is done
+        mListView.notifyUpdated();
+
+    }
+
+
+  /*  public void displayMorePhotos(){
         Log.d(TAG, "displayMorePhotos: displaying more photos");
 
         try{
@@ -452,9 +496,9 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
             if(mPhotos.size() > resultsCount && mPhotos.size() > 0){
 
                 int iterations;
-                if(mPhotos.size() > (resultsCount + 10)){
+                if(mPhotos.size() > (resultsCount + 11)){
                     Log.d(TAG, "displayMorePhotos: there are greater than 10 more photos");
-                    iterations = 10;
+                    iterations = 1;
                 }else{
                     Log.d(TAG, "displayMorePhotos: there is less than 10 more photos");
                     iterations = mPhotos.size() - resultsCount;
@@ -473,11 +517,10 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
         }catch (NullPointerException e){
             Log.e(TAG, "displayPhotos: NullPointerException:" + e.getMessage() );
         }
-    }
+    }*/
 
 
 }
-
 
 
 

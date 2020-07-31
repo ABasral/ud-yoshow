@@ -73,6 +73,7 @@ import udirect.com.yoshow.videocompressor.video.MediaController;
 public abstract class BaseCaptureActivity extends AppCompatActivity
     implements BaseCaptureInterface {
 
+
   private static final String TAG = "BaseCaptureActivity";
   private static final int RESULT_ADD_NEW_STORY = 7891;
   private static final int PROGRESS_BAR_ID = 5544;
@@ -132,6 +133,7 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
 
   @Override
   protected final void onCreate(Bundle savedInstanceState) {
+    this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
     AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     super.onCreate(savedInstanceState);
 

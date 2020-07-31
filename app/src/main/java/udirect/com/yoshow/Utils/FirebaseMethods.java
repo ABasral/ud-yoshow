@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.AsyncTask;
 /*
@@ -11,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;*/
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -130,7 +132,10 @@ public class FirebaseMethods {
 
             Log.d(TAG, "uploadNewStory: video upload bytes: " + bytes.length);
             final byte[] uploadBytes = bytes;
-
+            String path =  android.os.Environment.getExternalStorageDirectory().getPath()+"/UDIRECT/final.mp4";
+            Bitmap thumb = ThumbnailUtils.createVideoThumbnail(path,
+                    MediaStore.Images.Thumbnails.MINI_KIND);
+            File file2 = new File(android.os.Environment.getExternalStorageDirectory().getPath()+"/UDIRECT/thumb/thumb.jpeg");
 
             Thread thread = new Thread(new Runnable() {
 
@@ -156,12 +161,20 @@ public class FirebaseMethods {
 
                         s3Client.putObject(putObjectRequest);
 
+                        PutObjectRequest putObjectRequest2 = new PutObjectRequest(
+                                "yoshow",user_id+"/post/thumb"+(count+1), file2)
+                                .withStorageClass(StorageClass.ReducedRedundancy)
+                                .withCannedAcl(CannedAccessControlList.PublicRead);
+
+                        s3Client.putObject(putObjectRequest2);
+
 
                         //URL s3Url = s3Client.getUrl("yoshow", user_id+"/post"+(count+1));
                       //  GeneratePresignedUrlRequest request = new GeneratePresignedUrlRequest("yoshow", user_id+"/post"+(count+1));
                       //  URL s3Url = s3Client.generatePresignedUrl(request);
                         String urlstore = "https://yoshow.s3.ap-south-1.amazonaws.com/"+user_id+"/post"+(count+1);
-                        addPhotoToDatabase(caption, urlstore);
+                        String urlthumb = "https://yoshow.s3.ap-south-1.amazonaws.com/"+user_id+"/post/thumb"+(count+1);
+                        addPhotoToDatabase(caption, urlstore,urlthumb);
 
                        // progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                        // progressDialog.dismiss();
@@ -531,7 +544,7 @@ public class FirebaseMethods {
         return sdf.format(new Date());
     }
 
-    private void addPhotoToDatabase(String caption, String url){
+    private void addPhotoToDatabase(String caption, String url, String thumburl){
         Log.d(TAG, "addPhotoToDatabase: adding photo to database.");
 
         String tags = StringManipulation.getTags(caption);
@@ -540,6 +553,7 @@ public class FirebaseMethods {
         photo.setCaption(caption);
         photo.setDate_created(getTimestamp());
         photo.setImage_path(url);
+        photo.setThumb_path(thumburl);
         photo.setTags(tags);
         photo.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
         photo.setPhoto_id(newPhotoKey);

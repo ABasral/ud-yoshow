@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
+import android.media.Image;
 import android.media.MediaMetadataRetriever;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -26,6 +28,7 @@ import udirect.com.yoshow.R;
 
 public class GridImageAdapter extends ArrayAdapter<String>{
 
+
     private Context mContext;
     private LayoutInflater mInflater;
     private int layoutResource;
@@ -36,6 +39,7 @@ public class GridImageAdapter extends ArrayAdapter<String>{
         super(context, layoutResource, imgURLs);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mContext = context;
+
         this.layoutResource = layoutResource;
         mAppend = append;
         this.imgURLs = imgURLs;
@@ -45,8 +49,10 @@ public class GridImageAdapter extends ArrayAdapter<String>{
      //   VideoView image;
         SquareImageView image;
         ProgressBar mProgressBar;
+        Bitmap bitmap;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -60,6 +66,7 @@ public class GridImageAdapter extends ArrayAdapter<String>{
             holder = new ViewHolder();
             holder.mProgressBar = (ProgressBar) convertView.findViewById(R.id.gridImageProgressbar);
             holder.image = (SquareImageView) convertView.findViewById(R.id.gridImageView);
+
             convertView.setTag(holder);
         }
         else{
@@ -69,12 +76,15 @@ public class GridImageAdapter extends ArrayAdapter<String>{
         String imgURL = getItem(position);
 
         ImageLoader imageLoader = ImageLoader.getInstance();
-       /* try {
-             bitmap = retriveVideoFrameFromVideo(imgURL);
+    /*   Bitmap bitmap = null;
+       try {
+      bitmap = retriveVideoFrameFromVideo(imgURL);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
-        }
-        holder.image.setImageBitmap(bitmap);*/
+        }*/
+      //  Image objImage = (Image)bitmap;
+     //   holder.image.setImageBitmap(bitmap);
+
         imageLoader.displayImage(mAppend+imgURL, holder.image, new ImageLoadingListener() {
                 @Override
                 public void onLoadingStarted(String imageUri, View view) {

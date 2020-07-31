@@ -13,6 +13,7 @@ public class Photo implements Parcelable {
     private String date_created;
     private String image_path;
     private String photo_id;
+    private String thumb_path;
     private String user_id;
     private String tags;
     private List<Like> likes;
@@ -23,12 +24,13 @@ public class Photo implements Parcelable {
 
     }
 
-    public Photo(String caption, String date_created, String image_path, String photo_id,
+    public Photo(String caption, String date_created, String image_path, String photo_id, String thumb_path,
                  String user_id, String tags, List<Like> likes, List<Comment> comments) {
         this.caption = caption;
         this.date_created = date_created;
         this.image_path = image_path;
         this.photo_id = photo_id;
+        this.thumb_path = thumb_path;
         this.user_id = user_id;
         this.tags = tags;
         this.likes = likes;
@@ -40,6 +42,7 @@ public class Photo implements Parcelable {
         date_created = in.readString();
         image_path = in.readString();
         photo_id = in.readString();
+        thumb_path = in.readString();
         user_id = in.readString();
         tags = in.readString();
     }
@@ -50,6 +53,7 @@ public class Photo implements Parcelable {
         dest.writeString(date_created);
         dest.writeString(image_path);
         dest.writeString(photo_id);
+        dest.writeString(thumb_path);
         dest.writeString(user_id);
         dest.writeString(tags);
     }
@@ -115,6 +119,14 @@ public class Photo implements Parcelable {
         this.photo_id = photo_id;
     }
 
+    public String getThumb_path() {
+        return thumb_path;
+    }
+
+    public void setThumb_path(String thumb_path) {
+        this.thumb_path = thumb_path;
+    }
+
     public String getUser_id() {
         return user_id;
     }
@@ -146,6 +158,7 @@ public class Photo implements Parcelable {
                 ", date_created='" + date_created + '\'' +
                 ", image_path='" + image_path + '\'' +
                 ", photo_id='" + photo_id + '\'' +
+                ", thumb_path='" + thumb_path + '\'' +
                 ", user_id='" + user_id + '\'' +
                 ", tags='" + tags + '\'' +
                 ", likes=" + likes +

@@ -120,7 +120,10 @@ abstract class BaseCameraFragment extends Fragment
 
   @Override
   public final View onCreateView(
+
       LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+   // this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+
     return inflater.inflate(R.layout.mcam_fragment_videocapture, container, false);
   }
 
@@ -165,7 +168,10 @@ protected void setImageRes(ImageView iv, @DrawableRes int res) {
   @SuppressLint("SetTextI18n")
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
+
     super.onViewCreated(view, savedInstanceState);
+
+
 
 //    mDelayStartCountdown = (TextView) view.findViewById(R.id.delayStartCountdown);
 //    mButtonVideo = (ImageButton) view.findViewById(R.id.video);
