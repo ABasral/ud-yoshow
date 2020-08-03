@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
                 // Toast.makeText(getContext(),"Scrolled", Toast.LENGTH_LONG).show();
                /* if (mListView.getLastVisiblePosition() == resultsCount &&
                         mListView.getChildAt(mListView.getChildCount() - 1).getBottom() <= mListView.getHeight())*/
-               if(resultsCount>=3 && testint==1)
+               if(testint==1)
                {
                 if (mListView.getLastVisiblePosition() == resultsCount) {
                     //It is scrolled all the way down here
@@ -458,7 +458,7 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
                     Log.d(TAG, "displayPhotos: adding a photo to paginated list: " + mPhotos.get(i).getPhoto_id());
                 }
 
-                if(resultsCount==3)
+                if(mPhotos.size()>3)
                 {
                     testint=1;
                 }
@@ -477,9 +477,14 @@ public class HomeFragment extends Fragment implements OnUpdateListener, OnLoadLi
     }
     private void morePhotos(){
 
+
         mtempPaginatedPhotos.add(mPhotos.get(resultsCount));
         adapter = new MainFeedListAdapter(getActivity(), R.layout.layout_mainfeed_listitem, mtempPaginatedPhotos);
         resultsCount++;
+        if(mPhotos.size()<=resultsCount)
+        {
+            testint=0;
+        }
         mListView.setAdapter(adapter);
         mListView.setSelection(resultsCount-1);
         // Notify update is done
